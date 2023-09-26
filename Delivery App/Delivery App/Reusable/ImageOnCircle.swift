@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImageOnCircle: View {
     
-    let image: String
+    let image: Image
     let width: CGFloat
     let height: CGFloat
     
@@ -18,7 +18,7 @@ struct ImageOnCircle: View {
             Circle()
                 .fill(.white)
                 .frame(width: width, height: height)
-            Image(image)
+            image
                 .resizable()
                 .aspectRatio(1.0, contentMode: .fit)
                 .frame(width: 50, height: 50)

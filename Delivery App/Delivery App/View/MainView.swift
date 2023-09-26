@@ -27,7 +27,8 @@ struct MainView: View {
                     Image("payment").renderingMode(.template)
                 }
         }
-        .tint(CustomColor.tabSelectedColor)
+        .navigationBarBackButtonHidden(true)
+        .tint(Constants.Design.Colors.TabbarIcon.selected)
         .onAppear {
             let appearance = UITabBarAppearance()
             appearance.backgroundColor = UIColor(red: 248.0, green: 248.0, blue: 248.0, alpha: 0.92)
