@@ -9,44 +9,20 @@ import SwiftUI
 
 struct VegetablesView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var searchText = ""
-    
-    let names = ["Holly", "Josh", "Rhonda", "Ted"]
+    @ObservedObject var productsViewModel = CategoryDetailViewModel()
     
     var body: some View {
         NavigationView {
-            
-            List {
-                ForEach(searchResults, id: \.self) { name in
+                VStack {
                     HStack {
-                        Image("cali")
-                        Spacer()
-                        VStack(spacing: 15) {
-                            HStack {
-                                Text("Boston Cabbage")
-                                Spacer()
-                            }
-                            HStack {
-                                Text("3")
-                                Text("€ / piece")
-                                Spacer()
-                            }
-                            HStack {
-                                Button {
-                                    
-                                } label: {
-                                    Constants.Design.Images.addToFavorite
-                                }
-                                Button {
-                                    
-                                } label: {
-                                    Constants.Design.Images.addToCart
-                                }
-                            }
-                        }
+                        ChipContainerView(viewModel: productsViewModel)
+                            .padding(.leading, 20)
                     }
+                    .frame(width: Constants.Design.ScreenSize.width, height: 70)
+                    Spacer()
+                    ProductList(items: productsViewModel.filteredResult)
                 }
-            }
+                .background(Constants.Design.Colors.ViewBackground.background)
             .navigationBarBackButtonHidden(true)
             .navigationTitle(Constants.Content.Text.Vegetables)
             .navigationBarHidden(false)
@@ -63,17 +39,15 @@ struct VegetablesView: View {
                     }
                 }
             }
-            .searchable(text: $searchText) {
+            .searchable(text: $productsViewModel.searchText) {
+                let filteredData = productsViewModel.filterData()
+                ProductList(items: filteredData)
+                    .frame(height: Constants.Design.ScreenSize.height)
             }
         }
-    }
-    
-    var searchResults: [String] {
-        if searchText.isEmpty {
-            return names
-        } else {
-            return names.filter { $0.contains(searchText) }
-        }
+        .onAppear(perform: {
+            productsViewModel.getAllProducts()
+        })
     }
 }
 

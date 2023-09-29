@@ -21,7 +21,7 @@ struct MainView: View {
                     Text("")
                     Image("checkout").renderingMode(.template)
                 }
-            Payment()
+            Text("Profile")
                 .tabItem {
                     Text("")
                     Image("payment").renderingMode(.template)

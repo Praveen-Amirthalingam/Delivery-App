@@ -39,7 +39,7 @@ struct SplashScreen: View {
                             .multilineTextAlignment(.center)
                             .frame(width: Constants.Design.ScreenSize.width - 40)
                         
-                        NavigationLink(destination: MainView()) {
+                        NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true)) {
                             Text(Constants.Content.ButtonText.OrderNow)
                                 .foregroundColor(.white)
                                 .font(Font.custom(Constants.Design.Font.sfProText, size: 17))

@@ -1,11 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "heartbox 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "istockphoto-114433973-612x612.jpg",
+      "filename" : "heartbox.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

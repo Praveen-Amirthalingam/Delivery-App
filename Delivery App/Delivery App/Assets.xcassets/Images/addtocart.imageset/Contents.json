@@ -1,11 +1,12 @@
 {
   "images" : [
     {
+      "filename" : "addcart 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "istockphoto-114433973-612x612.jpg",
+      "filename" : "addcart.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
