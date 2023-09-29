@@ -27,8 +27,8 @@ struct NetworkClient {
         }
     }
     
-    func getAllProducts(completion: @escaping (Result<CategoryDetails, Error>) -> Void) {
-        let urlStr = PRODUCT_API.getAllSubCategories.apiString
+    func getAllProducts(categoryId: Int, completion: @escaping (Result<CategoryDetails, Error>) -> Void) {
+        let urlStr = PRODUCT_API.getAllSubCategories(value: categoryId).apiString
         guard let url = URL(string: urlStr) else { fatalError("Invalid URL") }
         
         NetworkManager().request(fromURL: url, params: nil, httpMethod: .get) { (result: Result<CategoryDetails, Error>) in

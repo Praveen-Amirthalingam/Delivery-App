@@ -20,9 +20,16 @@ struct ImageOnCircle: View {
                 .frame(width: width, height: height)
             image
                 .resizable()
-                .aspectRatio(1.0, contentMode: .fit)
-                .frame(width: 50, height: 50)
-                .foregroundColor(.blue)
+                .aspectRatio(Constraints.aspectRatio, contentMode: .fit)
+                .frame(width: Constraints.width, height: Constraints.height)
         }
+    }
+}
+
+extension ImageOnCircle {
+    struct Constraints {
+        static let aspectRatio = CGFloat(1.0)
+        static let width = CGFloat(50.0)
+        static let height = CGFloat(50.0)
     }
 }

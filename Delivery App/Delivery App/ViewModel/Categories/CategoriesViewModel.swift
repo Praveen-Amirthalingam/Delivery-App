@@ -17,7 +17,6 @@ class CategoriesViewModel: ObservableObject {
         NetworkClient().getAllCategories { result in
             switch result {
             case .success(let categories):
-                print(categories)
                 self.allCategories = categories
                 self.categoryArray = self.allCategories.value ?? [Category]()
                 self.filteredResult = self.categoryArray

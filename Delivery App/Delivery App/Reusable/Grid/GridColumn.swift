@@ -14,7 +14,7 @@ struct GridColumn:View {
     
     var body: some View {
         NavigationLink {
-            VegetablesView()
+            VegetablesView(selectedCategory: item)
                 .navigationBarBackButtonHidden(true)
         } label: {
             GridCell(item: item, width: width, height: height)

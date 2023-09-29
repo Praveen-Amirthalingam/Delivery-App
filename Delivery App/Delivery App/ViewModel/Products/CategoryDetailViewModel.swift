@@ -16,9 +16,10 @@ class CategoryDetailViewModel: ObservableObject {
     @Published var chipArray: [ChipModel] = [ChipModel]()
     @Published var selectedChipTitle = ""
     @Published var isChipSelected: Bool = false
+    @Published var isRefresh: Bool = false
     
-    func getAllProducts() {
-        NetworkClient().getAllProducts { result in
+    func getAllProducts(id: Int) {
+        NetworkClient().getAllProducts(categoryId: id) { result in
             switch result {
             case .success(let products):
                 print(products)
@@ -26,6 +27,7 @@ class CategoryDetailViewModel: ObservableObject {
                 self.productArray = self.allProducts.value ?? [Product]()
                 self.filteredResult = self.productArray
                 self.getChips()
+                self.isRefresh = true
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -54,7 +56,17 @@ class CategoryDetailViewModel: ObservableObject {
     }
     
     func getFilteredDataByChip(name: String){
-        self.filteredResult = self.productArray.filter{ $0.itemName.lowercased().contains(name.lowercased())}
-        self.isChipSelected = true
+        if name == "" {
+            self.filteredResult = self.productArray
+        }else{
+            let array = name.split(separator: "(")
+            self.filteredResult = self.productArray.filter{ $0.itemName.lowercased().contains(array[0].lowercased())}
+            self.isChipSelected = true
+        }
+        self.isRefresh = true
+    }
+    
+    public func refreshCompleted() {
+        self.isRefresh = false
     }
 }

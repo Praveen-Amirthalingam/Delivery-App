@@ -13,20 +13,14 @@ struct ImageSlider: View {
     
     var body: some View {
         TabView {
-            ForEach(images, id: \.self) { image in
-                AsyncImage(
-                    url: URL(string: PRODUCT_API.BASE_URL + image),
-                    content: { image in
-                        image.resizable()
-                            .resizable()
-                            .scaledToFill()
-                            
-                    },
-                    placeholder: {
-                        ProgressView()
-                            .frame(alignment: .center)
-                    }
-                )
+            if images.count > 0 {
+                ForEach(images, id: \.self) { image in
+                    NetworkImage(url: PRODUCT_API.BASE_URL + image)
+                        .scaledToFill()
+                }
+            }else{
+                NetworkImage(url: PRODUCT_API.sampleImage)
+                    .scaledToFill()
             }
         }
         .tabViewStyle(PageTabViewStyle())

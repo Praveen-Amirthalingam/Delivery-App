@@ -13,37 +13,34 @@ struct ProductListCell: View {
     
     var body: some View {
         HStack {
-            AsyncImage(
-                url: URL(string: PRODUCT_API.BASE_URL + item.images[1]),
-                content: { image in
-                    image.resizable()
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 170.0)
-                        .cornerRadius(10)
-                },
-                placeholder: {
-                    ProgressView()
-                        .frame(alignment: .center)
-                }
-            )
-            VStack(spacing: 15) {
+            if item.images.count > 1 {
+                NetworkImage(url: PRODUCT_API.BASE_URL + item.images[1])
+                    .scaledToFit()
+                    .frame(width: Constraints.imageFrameWidth)
+                    .cornerRadius(Constraints.imageCornorRadius)
+            }else{
+                Constants.Design.Images.placeHolderImage
+                    .scaledToFit()
+                    .frame(width: Constraints.imageFrameWidth)
+                    .cornerRadius(Constraints.imageCornorRadius)
+            }
+            VStack(spacing: Constraints.spacing_15) {
                 HStack {
                     Text(item.itemName)
-                        .font(Font.custom(Constants.Design.Font.sfProText, size: 22))
+                        .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_22))
                         .foregroundColor(Constants.Design.Colors.Text.primary)
                     Spacer()
                 }
                 HStack {
                     Text(String(format: "%.2f", item.price))
-                        .font(Font.custom(Constants.Design.Font.sfProText, size: 22))
+                        .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_22))
                         .foregroundColor(Constants.Design.Colors.Text.primary)
                     Text("€ / \(item.unit)")
-                        .font(Font.custom(Constants.Design.Font.sfProText, size: 16))
+                        .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_16))
                         .foregroundColor(Constants.Design.Colors.Text.secondary)
                     Spacer()
                 }
-                HStack(spacing: 20) {
+                HStack(spacing: Constraints.spacing_20) {
                     Button {
                         
                     } label: {
@@ -58,14 +55,24 @@ struct ProductListCell: View {
             }
             
         }
-        .frame(height: 150.0)
+        .frame(height: Constraints.hStackHeight)
         .overlay(content: {
             NavigationLink {
                 ItemView(item: item)
             } label: {
                 EmptyView()
-            }.opacity(0.0)
+            }.opacity(0)
         })
+    }
+}
+
+extension ProductListCell {
+    struct Constraints {
+        static let imageFrameWidth = CGFloat(170.0)
+        static let imageCornorRadius = CGFloat(10.0)
+        static let spacing_15 = CGFloat(15.0)
+        static let spacing_20 = CGFloat(20.0)
+        static let hStackHeight = CGFloat(150.0)
     }
 }
 

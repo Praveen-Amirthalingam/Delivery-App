@@ -13,25 +13,27 @@ struct MainView: View {
             CategoriesView()
                 .tabItem {
                     Text("")
-                    Image("categories")
+                    Constants.Design.Images.Categories
                         .renderingMode(.template)
                 }
             CheckoutView()
                 .tabItem {
                     Text("")
-                    Image("checkout").renderingMode(.template)
+                    Constants.Design.Images.Cart
+                        .renderingMode(.template)
                 }
             Text("Profile")
                 .tabItem {
                     Text("")
-                    Image("payment").renderingMode(.template)
+                    Constants.Design.Images.User
+                        .renderingMode(.template)
                 }
         }
         .navigationBarBackButtonHidden(true)
         .tint(Constants.Design.Colors.TabbarIcon.selected)
         .onAppear {
             let appearance = UITabBarAppearance()
-            appearance.backgroundColor = UIColor(red: 248.0, green: 248.0, blue: 248.0, alpha: 0.92)
+            appearance.backgroundColor = Constants.Design.Colors.uiColor
             UITabBar.appearance().unselectedItemTintColor = UIColor.yellow
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }

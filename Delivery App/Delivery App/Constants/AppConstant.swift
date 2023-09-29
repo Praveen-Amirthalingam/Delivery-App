@@ -5,6 +5,7 @@
 //  Created by apple on 26/09/23.
 //
 
+import UIKit
 import SwiftUI
 
 struct Constants {
@@ -19,6 +20,7 @@ struct Constants {
             static let Categories = "Categories"
             static let Vegetables = "Vegetables"
             static let CheckOut = "CheckOut"
+            static let CreditDebitCard = "Credit / Debit card"
             
             static let NonContactDeliveries = "Non-Contact Deliveries"
             static let WhenPlacingOrder = "When placing an order, select the option “Contactless delivery” and the courier will leave your order at the door."
@@ -40,6 +42,8 @@ struct Constants {
             static let cardBorder = Color("cardBorder")
             static let chipSelectBg = Color("chipSelectBg")
             static let chipSelectText = Color("chipSelectText")
+            
+            static let uiColor = UIColor(red: 248.0, green: 248.0, blue: 248.0, alpha: 0.92)
             
             struct ViewBackground {
                 static let splashView = Color("splashBgColor")
@@ -76,12 +80,36 @@ struct Constants {
             static let addToFavorite = Image("favorite")
             static let heartBox = Image("heartbox")
             static let addCart = Image("addtocart")
+            static let placeHolderImage = Image("sampleImage")
+            static let Cardback = Image("cardback")
+            static let Master = Image("mc")
+            static let camera = Image("cam")
+            
+            //TabBar Icons
+            static let Categories = Image("categories")
+            static let Cart = Image("checkout")
+            static let User = Image("payment")
         }
         
         struct Font {
             static let sfProText = "SF-Pro-Text-Regular"
             static let sfProDisplay = "SFPRODISPLAYREGULAR"
             static let roboto = "Roboto"
+            
+            struct Size {
+                static let size_12 = CGFloat(12)
+                static let size_16 = CGFloat(16)
+                static let size_17 = CGFloat(17)
+                static let size_18 = CGFloat(18)
+                static let size_20 = CGFloat(20)
+                static let size_22 = CGFloat(22)
+                static let size_24 = CGFloat(24)
+                static let size_26 = CGFloat(26)
+                static let size_30 = CGFloat(30)
+                static let size_32 = CGFloat(32)
+                static let size_34 = CGFloat(34)
+                static let size_40 = CGFloat(40)
+            }
         }
         
         struct ScreenSize {

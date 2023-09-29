@@ -17,60 +17,54 @@ struct LoginView: View {
                 MainView()
                     .navigationBarBackButtonHidden(true)
             }else{
-                VStack(spacing: 28) {
+                VStack(spacing: Constraints.spacing_28) {
                     Text(Constants.Content.appTitle)
-                        .font(Font.custom(Constants.Design.Font.sfProDisplay, size: 34))
-                        .padding(.top, 44)
+                        .font(Font.custom(Constants.Design.Font.sfProDisplay, size: Constants.Design.Font.Size.size_34))
+                        .padding(.top, Constraints.padding_44)
                     Constants.Design.Images.logo
                         .resizable()
-                        .frame(width: 150.0, height: 150.0)
+                        .frame(width: Constraints.logoWidth, height: Constraints.logoHeight)
                     
-                    VStack(alignment: .leading, spacing: 10) {
+                    VStack(alignment: .leading, spacing: Constraints.spacing_10) {
                         Text(Constants.Content.Text.Username)
-                            .font(Font.custom(Constants.Design.Font.sfProText, size: 18))
+                            .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_18))
                             .foregroundColor(Constants.Design.Colors.Text.primary)
-                            .frame(height: 15, alignment: .leading)
+                            .frame(height: Constraints.height_15, alignment: .leading)
                         
-                        TextField("", text: $loginViewModel.username, onEditingChanged: { isChanged in
-                            if isChanged {
-                                
-                            }else{
-                                
-                            }
-                        })
-                        .font(.system(size: 17, weight: .thin))
-                        .foregroundColor(.primary)
-                        .frame(height: 44)
-                        .padding(.horizontal, 12)
-                        .background(Color.white)
-                        .cornerRadius(4.0)
-                        .overlay(RoundedRectangle(cornerRadius: 10.0).strokeBorder(Color.gray, style: StrokeStyle(lineWidth: 1.0)))
+                        TextField("", text: $loginViewModel.username)
+                            .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_18))
+                            .foregroundColor(Constants.Design.Colors.Text.primary)
+                            .frame(height: Constraints.height_44)
+                            .padding(.horizontal, Constraints.padding_12)
+                            .background(Color.white)
+                            .cornerRadius(Constraints.cornorRadius_4)
+                            .overlay(RoundedRectangle(cornerRadius: Constraints.cornorRadius_10).strokeBorder(Color.gray, style: StrokeStyle(lineWidth: Constraints.lineWidth_1)))
                         
                         if !loginViewModel.isValidUsername {
                             Text(Constants.Content.Text.EnterValidUsername)
-                                .font(Font.custom(Constants.Design.Font.sfProText, size: 12))
+                                .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_12))
                                 .foregroundColor(.red)
                         }
                     }
                     
-                    VStack(alignment: .leading, spacing: 10) {
+                    VStack(alignment: .leading, spacing: Constraints.spacing_10) {
                         Text(Constants.Content.Text.Password)
-                            .font(Font.custom(Constants.Design.Font.sfProText, size: 18))
+                            .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_18))
                             .foregroundColor(Constants.Design.Colors.Text.primary)
-                            .frame(height: 15, alignment: .leading)
+                            .frame(height: Constraints.height_15, alignment: .leading)
                         
                         SecureField("", text: $loginViewModel.password)
-                            .font(.system(size: 17, weight: .thin))
-                            .foregroundColor(.primary)
-                            .frame(height: 44)
-                            .padding(.horizontal, 12)
+                            .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_18))
+                            .foregroundColor(Constants.Design.Colors.Text.primary)
+                            .frame(height: Constraints.height_44)
+                            .padding(.horizontal, Constraints.padding_12)
                             .background(Color.white)
-                            .cornerRadius(4.0)
-                            .overlay(RoundedRectangle(cornerRadius: 10.0).strokeBorder(Color.gray, style: StrokeStyle(lineWidth: 1.0)))
+                            .cornerRadius(Constraints.cornorRadius_4)
+                            .overlay(RoundedRectangle(cornerRadius: Constraints.cornorRadius_10).strokeBorder(Color.gray, style: StrokeStyle(lineWidth: Constraints.lineWidth_1)))
                         
                         if !loginViewModel.isValidPassword {
                             Text(Constants.Content.Text.EnterValidPassword)
-                                .font(Font.custom(Constants.Design.Font.sfProText, size: 12))
+                                .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_12))
                                 .foregroundColor(.red)
                         }
                     }
@@ -79,14 +73,13 @@ struct LoginView: View {
                         loginViewModel.validateCredentials()
                     } label: {
                         Text(Constants.Content.ButtonText.Login)
+                            .font(Font.custom(Constants.Design.Font.sfProText, size: Constants.Design.Font.Size.size_18))
                             .foregroundColor(.white)
-                            .font(.system(size: 18))
-                            .frame(width: Constants.Design.ScreenSize.width - 40, height: 55)
+                            .frame(width: Constraints.buttonWidth, height: Constraints.buttonHeight)
                         
                     }
                     .background(Constants.Design.Colors.Button.Background.primary)
-                    .cornerRadius(10.0)
-                    
+                    .cornerRadius(Constraints.cornorRadius_10)
                     
                     Spacer()
                 }
@@ -94,6 +87,24 @@ struct LoginView: View {
                 .background(Constants.Design.Colors.ViewBackground.background)
             }
         }
+    }
+}
+
+extension LoginView {
+    struct Constraints {
+        static let spacing_28 = CGFloat(28.0)
+        static let spacing_10 = CGFloat(10.0)
+        static let padding_44 = CGFloat(44.0)
+        static let padding_12 = CGFloat(12.0)
+        static let logoWidth = CGFloat(150.0)
+        static let logoHeight = CGFloat(150.0)
+        static let height_15 = CGFloat(15.0)
+        static let height_44 = CGFloat(44.0)
+        static let cornorRadius_4 = CGFloat(4.0)
+        static let cornorRadius_10 = CGFloat(10.0)
+        static let lineWidth_1 = CGFloat(1.0)
+        static let buttonWidth = CGFloat(Constants.Design.ScreenSize.width - 40)
+        static let buttonHeight = CGFloat(55.0)
     }
 }
 

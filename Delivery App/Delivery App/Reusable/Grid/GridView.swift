@@ -15,12 +15,20 @@ struct GridView: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            LazyVGrid(columns: gridItems, spacing: 20) {
+            LazyVGrid(columns: gridItems, spacing: Constraints.spacing) {
                 ForEach(items, id: \.self) { category in
-                    GridColumn(item: category, width: (Constants.Design.ScreenSize.width / 2) - 20, height: 210.0)
+                    GridColumn(item: category, width: Constraints.gridColumnWidth, height: Constraints.gridColumnHeight)
                 }
             }
         }
+    }
+}
+
+extension GridView {
+    struct Constraints {
+        static let spacing = CGFloat(20.0)
+        static let gridColumnWidth = CGFloat((Constants.Design.ScreenSize.width / 2) - 20)
+        static let gridColumnHeight = CGFloat(210.0)
     }
 }
 

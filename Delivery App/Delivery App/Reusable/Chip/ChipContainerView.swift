@@ -17,18 +17,18 @@ struct ChipContainerView: View {
         return GeometryReader { geo in
             ZStack(alignment: .topLeading, content: {
                 ForEach(viewModel.chipArray) { data in
-                    ChipView(systemImage: data.image,
+                    ChipView(viewModel: viewModel, systemImage: data.image,
                              titleKey: data.title,
                              isSelected: data.isSelected)
-                        .padding(.all, 5)
+                    .padding(.all, Constraints.padding_5)
                         .alignmentGuide(.leading) { dimension in
                             if (abs(width - dimension.width) > geo.size.width) {
-                                width = 0
+                                width = Constraints.zero
                                 height -= dimension.height
                             }
                             let result = width
                             if data.id == viewModel.chipArray.last!.id {
-                                width = 0
+                                width = Constraints.zero
                             } else {
                                 width -= dimension.width
                             }
@@ -37,7 +37,7 @@ struct ChipContainerView: View {
                         .alignmentGuide(.top) { dimension in
                             let result = height
                             if data.id == viewModel.chipArray.last!.id {
-                                height = 0
+                                height = Constraints.zero
                             }
                             return result
                         }
@@ -47,11 +47,12 @@ struct ChipContainerView: View {
     }
 }
 
-//struct ChipContainerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ChipContainerView(selected: .constant("title"))
-//    }
-//}
+extension ChipContainerView {
+    struct Constraints {
+        static let padding_5 = CGFloat(5.0)
+        static let zero = CGFloat(0.0)
+    }
+}
 
 
 
