@@ -34,6 +34,7 @@ struct Constants {
             static let OrderNow = "ORDER NOW"
             static let Dismiss = "DISMISS"
             static let Login = "Login"
+            static let useThisCard = "USE THIS CARD"
         }
     }
     
@@ -98,6 +99,7 @@ struct Constants {
             
             struct Size {
                 static let size_12 = CGFloat(12)
+                static let size_14 = CGFloat(14)
                 static let size_16 = CGFloat(16)
                 static let size_17 = CGFloat(17)
                 static let size_18 = CGFloat(18)
